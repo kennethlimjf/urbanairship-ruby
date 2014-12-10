@@ -1,6 +1,6 @@
 # Urbanairship::Ruby
 
-TODO: Write a gem description
+Ruby binding for Urbanairship
 
 ## Installation
 
@@ -20,7 +20,40 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use Urbanairship, set your Urbanairship application_key, application_secret and master_secret.
+
+```ruby
+client = Urbanairship.new({
+  application_key: ENV['URBANAIRSHIP_APP_KEY'],
+  application_secret: ENV['URBANAIRSHIP_APP_SECRET'],
+  master_secret: ENV['URBANAIRSHIP_MASTER_SECRET']
+})
+```
+
+Create a new push object, set message, add extra params and send.
+```ruby
+push_object = client.push_object(device_token: '...', message: '...')
+
+push_object.message('Urbanairship is here!')
+push_object.message         # "Urbanairship is here!"
+
+push_object.add_params({
+  key1: 'value1',
+  key2: 'value2',
+  key3: 'value3'
+})
+
+push_object.to_json         # { ... }
+
+push_object.send            # Sends payload to Urbanairship API
+```
+
+Perform method chaining
+```ruby
+client.push_object(device_token: '...', message: '...')
+      .add_params({key1: 'value1'})
+      .send
+```
 
 ## Contributing
 
