@@ -23,9 +23,9 @@ Or install it yourself as:
 ### 1. Initial Setup
 To use Urbanairship, set your Urbanairship application_key, application_secret and master_secret.
 ```ruby
-Urbanairship.application_key = '...'
-Urbanairship.application_secret = '...'
-Urbanairship.master_secret = '...'
+Urbanairship.application_key = '<application_key>'
+Urbanairship.application_secret = '<application_secret>'
+Urbanairship.master_secret = '<master_secret>'
 ```
 
 ### 2. Device Registration
@@ -58,8 +58,8 @@ Urbanairship::APID.delete("<apid>")
 Create a new push object:
 ```ruby
 push_object = Urbanairship::PushObject.create(
-  push_token: '...',
-  message: '...'
+  push_token: '< device_token | apid >',
+  message: 'Welcome to ...'
 )
 ```
 
@@ -70,7 +70,7 @@ response = push_object.send
 
 Perform method chaining:
 ```ruby
-repsonse = Urbanairship::PushObject.create
+response = Urbanairship::PushObject.create
              .push_token("< device_token | apid >")
              .message("Welcome to Github")
              .send
