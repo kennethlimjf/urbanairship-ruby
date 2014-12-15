@@ -20,39 +20,60 @@ Or install it yourself as:
 
 ## Usage
 
+### 1. Initial Setup
 To use Urbanairship, set your Urbanairship application_key, application_secret and master_secret.
-
 ```ruby
-client = Urbanairship.new({
-  application_key: ENV['URBANAIRSHIP_APP_KEY'],
-  application_secret: ENV['URBANAIRSHIP_APP_SECRET'],
-  master_secret: ENV['URBANAIRSHIP_MASTER_SECRET']
-})
+Urbanairship.application_key = '...'
+Urbanairship.application_secret = '...'
+Urbanairship.master_secret = '...'
 ```
 
-Create a new push object, set message, add extra params and send.
+### 2. Device Registration
+
+#### 2.1 Device Token Registration
+To register an iOS device token:
 ```ruby
-push_object = client.push_object(device_token: '...', message: '...')
-
-push_object.message('Urbanairship is here!')
-push_object.message         # "Urbanairship is here!"
-
-push_object.add_params({
-  key1: 'value1',
-  key2: 'value2',
-  key3: 'value3'
-})
-
-push_object.to_json         # { ... }
-
-push_object.send            # Sends payload to Urbanairship API
+Urbanairship::DeviceToken.register("<device_token>")
 ```
 
-Perform method chaining
+To delete an iOS device token:
 ```ruby
-client.push_object(device_token: '...', message: '...')
-      .add_params({key1: 'value1'})
-      .send
+Urbanairship::DeviceToken.delete("<device_token>")
+```
+
+
+#### 2.2 APID Registration
+To register an Android APID:
+```ruby
+Urbanairship::APID.register("<apid>")
+```
+
+To delete an Android APID:
+```ruby
+Urbanairship::APID.delete("<apid>")
+```
+
+
+### 3. Push Objects
+Create a new push object:
+```ruby
+push_object = Urbanairship::PushObject.create(
+  push_token: '...',
+  message: '...'
+)
+```
+
+To send a push notification:
+```ruby
+response = push_object.send
+```
+
+Perform method chaining:
+```ruby
+repsonse = Urbanairship::PushObject.create
+             .push_token("< device_token | apid >")
+             .message("Welcome to Github")
+             .send
 ```
 
 ## Contributing
