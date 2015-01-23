@@ -59,14 +59,6 @@ A push object describes everything about a push including the audience and push
 payload. The audience, notification and device_type can be set on an
 `Urbanairship::PushObject` instance.
 
-To create a new push object where the audience is a single iOS device:
-```ruby
-push_object = Urbanairship::PushObject.create(
-  audience: { device_token: "<device_token>" },
-  notification: { alert: "Welcome to Urbanairship!" },
-)
-```
-
 #### 3.1 Audience
 An audience selector determines the set of devices that a push will be delivered to.
 
