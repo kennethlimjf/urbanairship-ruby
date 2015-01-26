@@ -2,7 +2,8 @@ module Urbanairship
   class Push
     class << self
       def push(object)
-        Urbanairship.request(:post, url, object.to_json)
+        response = Urbanairship.request(:post, url, object.to_json)
+        Urbanairship::Response.new(response)
       end
 
       private

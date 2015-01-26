@@ -3,15 +3,17 @@ module Urbanairship
 
     def self.register(apid)
       apid_object = new(apid)
-      Urbanairship.request(:put, apid_object.url)
+      response = Urbanairship.request(:put, apid_object.url)
+      Urbanairship::Response.new(response)
     end
 
     def self.delete(apid)
       apid_object = new(apid)
-      Urbanairship.request(:delete, apid_object.url)
+      response = Urbanairship.request(:delete, apid_object.url)
+      Urbanairship::Response.new(response)
     end
 
-    def initialize(apid="")
+    def initialize(apid)
       @id = apid
     end
 

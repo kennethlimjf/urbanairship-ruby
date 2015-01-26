@@ -3,12 +3,14 @@ module Urbanairship
 
     def self.register(device_token)
       device_token_object = new device_token
-      Urbanairship.request(:put, device_token_object.url)
+      response = Urbanairship.request(:put, device_token_object.url)
+      Urbanairship::Response.new(response)
     end
 
     def self.delete(device_token)
       device_token_object = new device_token
-      Urbanairship.request(:delete, device_token_object.url)
+      response = Urbanairship.request(:delete, device_token_object.url)
+      Urbanairship::Response.new(response)
     end
 
     def initialize(device_token)

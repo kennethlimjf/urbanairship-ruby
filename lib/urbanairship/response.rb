@@ -1,10 +1,14 @@
 module Urbanairship
   class Response
-    attr_accessor :body, :push_id
+    attr_accessor :ok, :body, :push_ids, :code
 
     def initialize(response)
-      @body = JSON.parse(response.body)
-      @push_id = @body["push_id"]
+      unless response.body.nil?
+        @body = JSON.parse(response.body)
+        @push_ids = @body["push_ids"]
+        @ok = @body["ok"]
+      end
+      @code = response.code
     end
   end
 end

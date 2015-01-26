@@ -10,6 +10,7 @@ require 'urbanairship/errors/urbanairship_error'
 
 # Urbanairship Objects
 require 'urbanairship/base'
+require 'urbanairship/response'
 require 'urbanairship/apid'
 require 'urbanairship/device_token'
 require 'urbanairship/push_object'
